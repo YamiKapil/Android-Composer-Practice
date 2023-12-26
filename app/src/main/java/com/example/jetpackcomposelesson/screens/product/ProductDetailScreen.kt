@@ -1,10 +1,11 @@
-package com.example.jetpackcomposelesson.screens
+package com.example.jetpackcomposelesson.screens.product
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
@@ -18,40 +19,31 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import com.example.jetpackcomposelesson.screens.BottomBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingScreen(navController: NavController) {
+fun ProductDetailScreen(navController: NavController) {
+    val canNavigateBack = navController.previousBackStackEntry != null;
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(text = "Setting") },
+            TopAppBar(
+                title = { Text(text = "Product Detail") },
                 navigationIcon = {
-                    IconButton(onClick = {}) {
-                        Icon(
-                            imageVector = Icons.Default.Menu,
-                            contentDescription = "Home Menu Icon"
-                        )
+                    if (canNavigateBack) {
+                        IconButton(onClick = {
+                            navController.navigateUp()
+                        }) {
+                            Icon(
+                                imageVector = Icons.Filled.ArrowBack,
+                                contentDescription = "Back"
+                            )
+                        }
                     }
                 },
-                actions = {
-                    IconButton(onClick = {}) {
-                        Icon(
-                            imageVector = Icons.Default.Search,
-                            contentDescription = "Search Menu Icon"
-                        )
-                    }
-                    IconButton(onClick = {}) {
-                        Icon(
-                            imageVector = Icons.Default.Info,
-                            contentDescription = "Info Menu Icon"
-                        )
-                    }
-                }
-            )
+
+                )
         },
-        bottomBar = {
-            BottomBar(navController = navController)
-        }
     ) { paddingValue ->
         Column(
             modifier = Modifier
@@ -60,7 +52,7 @@ fun SettingScreen(navController: NavController) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(text = "Setting Screen")
+            Text(text = "Product Detail Screen")
         }
     }
 }

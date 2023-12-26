@@ -33,7 +33,7 @@ import com.example.jetpackcomposelesson.route.BottomNavGraph
 fun MainApp() {
     val navController = rememberNavController();
     Scaffold(
-        topBar = {
+        /*topBar = {
             TopAppBar(title = { Text(text = "Home") },
                 navigationIcon = {
                     IconButton(onClick = {}) {
@@ -59,7 +59,9 @@ fun MainApp() {
                 }
             )
         },
-        bottomBar = { BottomBar(navController = navController) }
+        bottomBar = {
+            //    BottomBar(navController = navController)
+        }*/
     ) { paddingValue ->
         BottomNavGraph(navController = navController, paddingValues = paddingValue)
         /*Column(
@@ -112,6 +114,8 @@ fun BottomBar(
                         // avoid multiple copies of the same destination when
                         // re-selecting the same item
                         launchSingleTop = true
+                        // restore state when re-selecting a previously selected item
+                        restoreState = true
                     }
                 }
             )
